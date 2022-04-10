@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ncl_test/bloc/bliss/bliss_bloc.dart';
 
 class BlissScreen extends StatefulWidget {
   const BlissScreen({Key? key}) : super(key: key);
@@ -10,6 +12,38 @@ class BlissScreen extends StatefulWidget {
 class _BlissScreenState extends State<BlissScreen> {
   @override
   Widget build(BuildContext context) {
-    return Text('Bliss');
+    return BlocProvider(
+      create: (BuildContext context) => BlissBloc()..add(BlissDataLoad()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('SKY'),
+        ),
+        body: BlocBuilder<BlissBloc, BlissState>(
+          builder: (BuildContext context, BlissState state) {
+            debugPrint('state is: $state');
+            if (state is BlissDataLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is BlissDataLoaded) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Ship Name: ${state.blissData?.shipName}'),
+                    Text('Passenger Capacity: ${state.blissData?.passengerCapacity}'),
+                    Text('Crew: ${state.blissData?.crew}'),
+                    Text('Inaugural Date: ${state.blissData?.inauguralDate}'),
+                  ],
+                ),
+              );
+            }
+            if (state is BlissDataLoadError) {
+              return const Center(child: Text('Error'));
+            }
+            return const Text('Some Error');
+          },
+        ),
+      ),
+    );
   }
 }

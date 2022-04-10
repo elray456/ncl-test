@@ -38,6 +38,7 @@ class SkyBloc extends Bloc<SkyEvent, SkyState> {
       emit(SkyDataLoaded(skyData));
     } catch (error) {
       debugPrint('sky_bloc error: $error');
+      emit(SkyDataLoadError());
     }
   }
 }
