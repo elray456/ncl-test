@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ncl_test/screens/bliss_screen.dart';
+import 'package:ncl_test/screens/escape_screen.dart';
+import 'package:ncl_test/screens/sky_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,47 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text('Start')
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () => _onClickSkyHandler(context),
+              child: const Text('SKY'),
+            ),
+            TextButton(
+              onPressed: () => _onClickBlissHandler(context),
+              child: const Text('BLISS'),
+            ),
+            TextButton(
+              onPressed: () => _onClickEscapeHandler(context),
+              child: const Text('ESCAPE'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _onClickSkyHandler(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SkyScreen(),
+      ),
+    );
+  }
+
+  void _onClickBlissHandler(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const BlissScreen(),
+      ),
+    );
+  }
+
+  void _onClickEscapeHandler(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const EscapeScreen(),
       ),
     );
   }
