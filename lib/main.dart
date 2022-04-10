@@ -5,7 +5,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'NCL Test',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

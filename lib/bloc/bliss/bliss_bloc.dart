@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:chopper/chopper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -16,23 +14,24 @@ class BlissBloc extends Bloc<BlissEvent, BlissState> {
     on<BlissDataLoad>(_mapSkyDataLoadToState);
   }
 
-  void _mapSkyDataLoadToState(BlissDataLoad event, Emitter<BlissState> emit) async {
-    BlissModel blissData = BlissModel();
+  void _mapSkyDataLoadToState(
+      BlissDataLoad event, Emitter<BlissState> emit) async {
+    BlissModel blissData;
     try {
       final Response<dynamic> blissDataRaw =
-      await NclApiService.create().getBlissData();
+          await NclApiService.create().getBlissData();
 
-      blissData.shipName = blissDataRaw.body['shipName'];
-      blissData.passengerCapacity =
-      blissDataRaw.body['shipFacts']['passengerCapacity'];
-      blissData.crew = blissDataRaw.body['shipFacts']['crew'];
-      blissData.inauguralDate = blissDataRaw.body['shipFacts']['inauguralDate'];
-
-      log('is empty ${blissData.shipName}');
+      blissData = BlissModel(
+        shipName: blissDataRaw.body['shipName'],
+        passengerCapacity: blissDataRaw.body['shipFacts']['passengerCapacity'],
+        crew: blissDataRaw.body['shipFacts']['crew'],
+        inauguralDate: blissDataRaw.body['shipFacts']['inauguralDate'],
+      );
 
       emit(BlissDataLoaded(blissData));
     } catch (error) {
-      debugPrint('sky_bloc error: $error');
+      debugPrint('bliss_bloc error: $error');
+      emit(BlissDataLoadError());
     }
   }
 }
