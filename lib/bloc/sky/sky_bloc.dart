@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:chopper/chopper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -17,18 +15,17 @@ class SkyBloc extends Bloc<SkyEvent, SkyState> {
   }
 
   void _mapSkyDataLoadToState(SkyDataLoad event, Emitter<SkyState> emit) async {
-    SkyModel skyData = SkyModel();
+    SkyModel skyData;
     try {
       final Response<dynamic> skyDataRaw =
           await NclApiService.create().getSkyData();
 
-      skyData.shipName = skyDataRaw.body['shipName'];
-      skyData.passengerCapacity =
-      skyDataRaw.body['shipFacts']['passengerCapacity'];
-      skyData.crew = skyDataRaw.body['shipFacts']['crew'];
-      skyData.inauguralDate = skyDataRaw.body['shipFacts']['inauguralDate'];
-
-      log('is empty ${skyData.shipName}');
+      skyData = SkyModel(
+        shipName: skyDataRaw.body['shipName'],
+        passengerCapacity: skyDataRaw.body['shipFacts']['passengerCapacity'],
+        crew: skyDataRaw.body['shipFacts']['crew'],
+        inauguralDate: skyDataRaw.body['shipFacts']['inauguralDate'],
+      );
 
       emit(SkyDataLoaded(skyData));
     } catch (error) {

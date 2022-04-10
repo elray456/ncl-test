@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ncl_test/bloc/escape/escape_bloc.dart';
+import 'package:ncl_test/widgets/cruise_data_container.dart';
 
 class EscapeScreen extends StatefulWidget {
   const EscapeScreen({Key? key}) : super(key: key);
@@ -25,16 +26,11 @@ class _EscapeScreenState extends State<EscapeScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is EscapeDataLoaded) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Ship Name: ${state.escapeData?.shipName}'),
-                    Text('Passenger Capacity: ${state.escapeData?.passengerCapacity}'),
-                    Text('Crew: ${state.escapeData?.crew}'),
-                    Text('Inaugural Date: ${state.escapeData?.inauguralDate}'),
-                  ],
-                ),
+              return CruiseDataContainer(
+                shipName: state.escapeData?.shipName,
+                passengerCapacity: state.escapeData?.passengerCapacity,
+                crew: state.escapeData?.crew,
+                inauguralDate: state.escapeData?.inauguralDate,
               );
             }
             if (state is EscapeDataLoadError) {

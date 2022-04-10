@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ncl_test/bloc/sky/sky_bloc.dart';
+import 'package:ncl_test/widgets/cruise_data_container.dart';
 
 class SkyScreen extends StatefulWidget {
   const SkyScreen({Key? key}) : super(key: key);
@@ -25,16 +26,11 @@ class _SkyScreenState extends State<SkyScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is SkyDataLoaded) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Ship Name: ${state.skyData?.shipName}'),
-                    Text('Passenger Capacity: ${state.skyData?.passengerCapacity}'),
-                    Text('Crew: ${state.skyData?.crew}'),
-                    Text('Inaugural Date: ${state.skyData?.inauguralDate}'),
-                  ],
-                ),
+              return CruiseDataContainer(
+                shipName: state.skyData?.shipName,
+                passengerCapacity: state.skyData?.passengerCapacity,
+                crew: state.skyData?.crew,
+                inauguralDate: state.skyData?.inauguralDate,
               );
             }
             if (state is SkyDataLoadError) {

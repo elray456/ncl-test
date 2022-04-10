@@ -8,33 +8,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Demo Home Page'),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Demo Home Page'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => _onClickSkyHandler(context),
-                child: const Text('SKY'),
-              ),
-              TextButton(
-                onPressed: () => _onClickBlissHandler(context),
-                child: const Text('BLISS'),
-              ),
-              TextButton(
-                onPressed: () => _onClickEscapeHandler(context),
-                child: const Text('ESCAPE'),
-              ),
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () => _onClickSkyHandler(context),
+              child: const Text('SKY'),
+            ),
+            TextButton(
+              onPressed: () => _onClickBlissHandler(context),
+              child: const Text('BLISS'),
+            ),
+            TextButton(
+              onPressed: () => _onClickEscapeHandler(context),
+              child: const Text('ESCAPE'),
+            ),
+          ],
         ),
       ),
     );

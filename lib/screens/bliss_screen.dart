@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ncl_test/bloc/bliss/bliss_bloc.dart';
+import 'package:ncl_test/widgets/cruise_data_container.dart';
 
 class BlissScreen extends StatefulWidget {
   const BlissScreen({Key? key}) : super(key: key);
@@ -25,16 +26,11 @@ class _BlissScreenState extends State<BlissScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is BlissDataLoaded) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Ship Name: ${state.blissData?.shipName}'),
-                    Text('Passenger Capacity: ${state.blissData?.passengerCapacity}'),
-                    Text('Crew: ${state.blissData?.crew}'),
-                    Text('Inaugural Date: ${state.blissData?.inauguralDate}'),
-                  ],
-                ),
+              return CruiseDataContainer(
+                shipName: state.blissData?.shipName,
+                passengerCapacity: state.blissData?.passengerCapacity,
+                crew: state.blissData?.crew,
+                inauguralDate: state.blissData?.inauguralDate,
               );
             }
             if (state is BlissDataLoadError) {
