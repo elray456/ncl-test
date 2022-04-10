@@ -22,11 +22,6 @@ class SkyBloc extends Bloc<SkyEvent, SkyState> {
       final Response<dynamic> skyDataRaw =
           await NclApiService.create().getSkyData();
 
-      log('sky bloc: ${skyDataRaw.body['shipName']}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['passengerCapacity'].runtimeType}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['crew'].runtimeType}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['inauguralDate'].runtimeType}');
-
       skyData.shipName = skyDataRaw.body['shipName'];
       skyData.passengerCapacity =
       skyDataRaw.body['shipFacts']['passengerCapacity'];

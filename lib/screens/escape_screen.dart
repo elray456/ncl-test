@@ -16,7 +16,7 @@ class _EscapeScreenState extends State<EscapeScreen> {
       create: (BuildContext context) => EscapeBloc()..add(EscapeDataLoad()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('SKY'),
+          title: const Text('ESCAPE'),
         ),
         body: BlocBuilder<EscapeBloc, EscapeState>(
           builder: (BuildContext context, EscapeState state) {

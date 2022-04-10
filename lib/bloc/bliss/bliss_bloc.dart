@@ -22,11 +22,6 @@ class BlissBloc extends Bloc<BlissEvent, BlissState> {
       final Response<dynamic> blissDataRaw =
       await NclApiService.create().getBlissData();
 
-      log('sky bloc: ${blissDataRaw.body['shipName']}');
-      log('sky bloc: ${blissDataRaw.body['shipFacts']['passengerCapacity'].runtimeType}');
-      log('sky bloc: ${blissDataRaw.body['shipFacts']['crew'].runtimeType}');
-      log('sky bloc: ${blissDataRaw.body['shipFacts']['inauguralDate'].runtimeType}');
-
       blissData.shipName = blissDataRaw.body['shipName'];
       blissData.passengerCapacity =
       blissDataRaw.body['shipFacts']['passengerCapacity'];

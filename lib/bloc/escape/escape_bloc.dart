@@ -16,22 +16,19 @@ class EscapeBloc extends Bloc<EscapeEvent, EscapeState> {
     on<EscapeDataLoad>(_mapSkyDataLoadToState);
   }
 
-  void _mapSkyDataLoadToState(EscapeDataLoad event, Emitter<EscapeState> emit) async {
+  void _mapSkyDataLoadToState(
+      EscapeDataLoad event, Emitter<EscapeState> emit) async {
     EscapeModel escapeData = EscapeModel();
     try {
-      final Response<dynamic> skyDataRaw =
-      await NclApiService.create().getSkyData();
+      final Response<dynamic> escapeDataRaw =
+          await NclApiService.create().getEscapeData();
 
-      log('sky bloc: ${skyDataRaw.body['shipName']}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['passengerCapacity'].runtimeType}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['crew'].runtimeType}');
-      log('sky bloc: ${skyDataRaw.body['shipFacts']['inauguralDate'].runtimeType}');
-
-      escapeData.shipName = skyDataRaw.body['shipName'];
+      escapeData.shipName = escapeDataRaw.body['shipName'];
       escapeData.passengerCapacity =
-      skyDataRaw.body['shipFacts']['passengerCapacity'];
-      escapeData.crew = skyDataRaw.body['shipFacts']['crew'];
-      escapeData.inauguralDate = skyDataRaw.body['shipFacts']['inauguralDate'];
+          escapeDataRaw.body['shipFacts']['passengerCapacity'];
+      escapeData.crew = escapeDataRaw.body['shipFacts']['crew'];
+      escapeData.inauguralDate =
+          escapeDataRaw.body['shipFacts']['inauguralDate'];
 
       log('is empty ${escapeData.shipName}');
 

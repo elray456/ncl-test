@@ -16,7 +16,7 @@ class _BlissScreenState extends State<BlissScreen> {
       create: (BuildContext context) => BlissBloc()..add(BlissDataLoad()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('SKY'),
+          title: const Text('BLISS'),
         ),
         body: BlocBuilder<BlissBloc, BlissState>(
           builder: (BuildContext context, BlissState state) {
