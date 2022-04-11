@@ -3,6 +3,7 @@ import 'package:ncl_test/screens/bliss_screen.dart';
 import 'package:ncl_test/screens/escape_screen.dart';
 import 'package:ncl_test/screens/sky_screen.dart';
 
+// Home (root) screen navigates to different screens for respective cruise ships
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

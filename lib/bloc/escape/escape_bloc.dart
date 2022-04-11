@@ -10,14 +10,17 @@ part 'escape_event.dart';
 part 'escape_state.dart';
 
 class EscapeBloc extends Bloc<EscapeEvent, EscapeState> {
-  EscapeBloc() : super(EscapeDataLoading()) {
-    on<EscapeDataLoad>(_mapSkyDataLoadToState);
+  EscapeBloc() : super(EscapeInit()) {
+    on<EscapeDataFetched>(_mapSkyDataLoadToState);
   }
 
   void _mapSkyDataLoadToState(
-      EscapeDataLoad event, Emitter<EscapeState> emit) async {
+      EscapeDataFetched event, Emitter<EscapeState> emit) async {
     EscapeModel escapeData;
     try {
+      emit(EscapeDataLoading());
+
+      // Fetch ESCAPE cruiser data
       final Response<dynamic> escapeDataRaw =
           await NclApiService.create().getEscapeData();
 

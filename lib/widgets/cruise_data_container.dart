@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Encapsulates widgets used to present cruise ship data
 class CruiseDataContainer extends StatelessWidget {
   final String? shipName, passengerCapacity, crew, inauguralDate;
 

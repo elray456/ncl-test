@@ -1,16 +1,8 @@
-# ncl_test
+Did not have time to finish the UI, unit tests, and exceptions for different HTTP responses.
 
-A new Flutter project.
+Unit tests should include more tests on different states the application can run into.
 
-## Getting Started
+BLoC pattern is a little bit overkill for this application. Could have used Provider or Cubits. But
+wanted to demonstrate how I would approach or what would I use when developing a large scale application.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

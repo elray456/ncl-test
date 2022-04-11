@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ncl_test/bloc/escape/escape_bloc.dart';
+import 'package:ncl_test/screens/error_screen.dart';
 import 'package:ncl_test/widgets/cruise_data_container.dart';
 
 class EscapeScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _EscapeScreenState extends State<EscapeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => EscapeBloc()..add(EscapeDataLoad()),
+      create: (BuildContext context) => EscapeBloc()..add(EscapeDataFetched()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('ESCAPE'),
@@ -34,9 +35,9 @@ class _EscapeScreenState extends State<EscapeScreen> {
               );
             }
             if (state is EscapeDataLoadError) {
-              return const Center(child: Text('Error'));
+              return const ErrorScreen();
             }
-            return const Text('Some Error');
+            return const ErrorScreen();
           },
         ),
       ),

@@ -5,4 +5,4 @@ abstract class SkyEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SkyDataLoad extends SkyEvent {}
+class SkyDataFetched extends SkyEvent {}

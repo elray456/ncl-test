@@ -3,8 +3,12 @@ part of 'bliss_bloc.dart';
 @immutable
 abstract class BlissState extends Equatable {}
 
-class BlissDataLoading extends BlissState {
+class BlissInit extends BlissState {
+  @override
+  List<Object?> get props => [];
+}
 
+class BlissDataLoading extends BlissState {
   @override
   List<Object?> get props => [];
 }

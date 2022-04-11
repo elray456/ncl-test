@@ -3,8 +3,12 @@ part of 'escape_bloc.dart';
 @immutable
 abstract class EscapeState extends Equatable {}
 
-class EscapeDataLoading extends EscapeState {
+class EscapeInit extends EscapeState {
+  @override
+  List<Object?> get props => [];
+}
 
+class EscapeDataLoading extends EscapeState {
   @override
   List<Object?> get props => [];
 }

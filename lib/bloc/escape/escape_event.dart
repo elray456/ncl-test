@@ -5,4 +5,4 @@ abstract class EscapeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class EscapeDataLoad extends EscapeEvent {}
+class EscapeDataFetched extends EscapeEvent {}

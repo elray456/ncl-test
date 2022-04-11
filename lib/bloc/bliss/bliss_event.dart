@@ -5,4 +5,4 @@ abstract class BlissEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class BlissDataLoad extends BlissEvent {}
+class BlissDataFetched extends BlissEvent {}

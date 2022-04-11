@@ -3,8 +3,12 @@ part of 'sky_bloc.dart';
 @immutable
 abstract class SkyState extends Equatable {}
 
-class SkyDataLoading extends SkyState {
+class SkyInit extends SkyState {
+  @override
+  List<Object?> get props => [];
+}
 
+class SkyDataLoading extends SkyState {
   @override
   List<Object?> get props => [];
 }

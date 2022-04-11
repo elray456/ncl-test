@@ -10,14 +10,16 @@ part 'bliss_event.dart';
 part 'bliss_state.dart';
 
 class BlissBloc extends Bloc<BlissEvent, BlissState> {
-  BlissBloc() : super(BlissDataLoading()) {
-    on<BlissDataLoad>(_mapSkyDataLoadToState);
+  BlissBloc() : super(BlissInit()) {
+    on<BlissDataFetched>(_mapSkyDataLoadToState);
   }
 
   void _mapSkyDataLoadToState(
-      BlissDataLoad event, Emitter<BlissState> emit) async {
+      BlissDataFetched event, Emitter<BlissState> emit) async {
     BlissModel blissData;
     try {
+      emit(BlissDataLoading());
+      // Fetch BLISS cruiser data
       final Response<dynamic> blissDataRaw =
           await NclApiService.create().getBlissData();
 

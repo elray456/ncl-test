@@ -9,14 +9,17 @@ part 'sky_event.dart';
 
 part 'sky_state.dart';
 
-class SkyBloc extends Bloc<SkyEvent, SkyState> {
-  SkyBloc() : super(SkyDataLoading()) {
-    on<SkyDataLoad>(_mapSkyDataLoadToState);
+class EscapeBloc extends Bloc<SkyEvent, SkyState> {
+  EscapeBloc() : super(SkyInit()) {
+    on<SkyDataFetched>(mapSkyDataLoadToState);
   }
 
-  void _mapSkyDataLoadToState(SkyDataLoad event, Emitter<SkyState> emit) async {
+  void mapSkyDataLoadToState(SkyDataFetched event, Emitter<SkyState> emit) async {
     SkyModel skyData;
     try {
+      emit(SkyDataLoading());
+
+      // Fetch SKY cruiser data
       final Response<dynamic> skyDataRaw =
           await NclApiService.create().getSkyData();
 
